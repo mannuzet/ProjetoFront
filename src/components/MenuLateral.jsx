@@ -1,110 +1,164 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 function MenuLateral({ aberto, setTela }) {
+  const [cadastroAberto, setCadastroAberto] = useState(true);
 
-    const [cadastroAberto, setCadastroAberto] = useState(false)
+  function alterarCadastro() {
+    setCadastroAberto(!cadastroAberto);
+  }
 
-    function alterarCadastro() {
-        setCadastroAberto(!cadastroAberto)
-    }
+  const itens = [
+    {
+      nome: "Funcionários",
+      tela: "funcionarios",
+    },
+    {
+      nome: "Safra",
+      tela: "safra",
+    },
+    {
+      nome: "Unidade",
+      tela: "unidade",
+    },
+    {
+      nome: "Equipamento",
+      tela: "equipamento",
+    },
+    {
+      nome: "Medição",
+      tela: "medicao",
+    },
+    {
+      nome: "Unidade de Medida",
+      tela: "unidadeMedida",
+    },
+    {
+      nome: "Tipo de Informação",
+      tela: "tipoInformacao",
+    },
+    {
+      nome: "Indicadores",
+      tela: "indicadores",
+    },
+  ];
 
-    return (
-        <aside
-            className={`menu-lateral bg-dark text-white ${
-                aberto ? 'aberto' : 'fechado'
-            }`}
+  if (!aberto) {
+    return null;
+  }
+
+  return (
+    <aside
+      style={{
+        width: "230px",
+        minWidth: "230px",
+        minHeight: "calc(100vh - 60px)",
+        background: "#454d55",
+        color: "#ffffff",
+        padding: "28px 20px",
+        boxSizing: "border-box",
+      }}
+    >
+
+      {/* TÍTULO */}
+
+      <h2
+        style={{
+          margin: "0 0 20px 5px",
+          fontSize: "15px",
+          fontWeight: "700",
+          textTransform: "uppercase",
+          letterSpacing: "0.5px",
+          color: "#ffffff",
+        }}
+      >
+        Menu
+      </h2>
+
+
+      {/* INÍCIO */}
+
+      <button
+        onClick={() => setTela("inicio")}
+        style={{
+          width: "100%",
+          height: "35px",
+          marginBottom: "7px",
+          padding: "0 15px",
+          border: "none",
+          borderRadius: "6px",
+          background: "#68737d",
+          color: "#ffffff",
+          fontSize: "13px",
+          fontWeight: "600",
+          textAlign: "left",
+          cursor: "pointer",
+        }}
+      >
+        Início
+      </button>
+
+
+      {/* CADASTRO */}
+
+      <button
+        onClick={alterarCadastro}
+        style={{
+          width: "100%",
+          height: "35px",
+          marginBottom: "7px",
+          padding: "0 15px",
+          border: "none",
+          borderRadius: "6px",
+          background: "#68737d",
+          color: "#ffffff",
+          fontSize: "13px",
+          fontWeight: "600",
+          textAlign: "left",
+          cursor: "pointer",
+        }}
+      >
+        Cadastro {cadastroAberto ? "▼" : "▶"}
+      </button>
+
+
+      {/* SUBMENU */}
+
+      {cadastroAberto && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "6px",
+          }}
         >
 
-            <h2 className="h6 text-uppercase mb-3">
-                Menu
-            </h2>
+          {itens.map((item) => (
+            <button
+              key={item.tela}
+              onClick={() => setTela(item.tela)}
+              style={{
+                width: "100%",
+                minHeight: "35px",
+                padding: "7px 14px",
+                border: "1px solid #59636d",
+                borderRadius: "6px",
+                background: "transparent",
+                color: "#f1f3f5",
+                fontSize: "13px",
+                textAlign: "left",
+                cursor: "pointer",
+                boxSizing: "border-box",
+              }}
+            >
+              {item.nome}
+            </button>
+          ))}
 
-            <div className="d-grid gap-2">
+        </div>
+      )}
 
-                {/* INÍCIO */}
-                <button
-                    className="btn btn-outline-light text-start"
-                    onClick={() => setTela('inicio')}
-                >
-                    Início
-                </button>
-
-
-                {/* CADASTROS */}
-                <button
-                    className="btn btn-outline-light text-start"
-                    onClick={alterarCadastro}
-                >
-                    Cadastro {cadastroAberto ? '▲' : '▼'}
-                </button>
-
-
-                {/* SUBMENU */}
-                {cadastroAberto && (
-                    <div className="ms-3 d-grid gap-2">
-
-                        <button
-                            className="btn btn-sm btn-dark text-start"
-                            onClick={() => setTela('safra')}
-                        >
-                            Safra
-                        </button>
-
-
-                        <button
-                            className="btn btn-sm btn-dark text-start"
-                            onClick={() => setTela('unidade')}
-                        >
-                            Unidade
-                        </button>
-
-
-                        <button
-                            className="btn btn-sm btn-dark text-start"
-                            onClick={() => setTela('equipamento')}
-                        >
-                            Equipamento
-                        </button>
-
-
-                        <button
-                            className="btn btn-sm btn-dark text-start"
-                            onClick={() => setTela('medicao')}
-                        >
-                            Medição
-                        </button>
-
-
-                        <button
-                            className="btn btn-sm btn-dark text-start"
-                            onClick={() => setTela('unidadeMedida')}
-                        >
-                            Unidade de Medida
-                        </button>
-
-
-                        <button
-                            className="btn btn-sm btn-dark text-start"
-                            onClick={() => setTela('tipoInformacao')}
-                        >
-                            Tipo de Informação
-                        </button>
-
-
-                        <button
-                            className="btn btn-sm btn-dark text-start"
-                            onClick={() => setTela('indicadores')}
-                        >
-                            Indicadores
-                        </button>
-
-                    </div>
-                )}
-
-            </div>
-
-        </aside>
-    )
+    </aside>
+  );
 }
 
-export default MenuLateral
+export default MenuLateral;
