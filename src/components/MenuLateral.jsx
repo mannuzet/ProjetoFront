@@ -13,6 +13,10 @@ function MenuLateral({ aberto, setTela }) {
       tela: "funcionarios",
     },
     {
+      nome: "Usuários",
+      tela: "usuarios",
+    },
+    {
       nome: "Safra",
       tela: "safra",
     },
@@ -74,7 +78,6 @@ function MenuLateral({ aberto, setTela }) {
         Menu
       </h2>
 
-
       {/* INÍCIO */}
 
       <button
@@ -96,7 +99,6 @@ function MenuLateral({ aberto, setTela }) {
       >
         Início
       </button>
-
 
       {/* CADASTRO */}
 
@@ -120,7 +122,6 @@ function MenuLateral({ aberto, setTela }) {
         Cadastro {cadastroAberto ? "▼" : "▶"}
       </button>
 
-
       {/* SUBMENU */}
 
       {cadastroAberto && (
@@ -131,7 +132,6 @@ function MenuLateral({ aberto, setTela }) {
             gap: "6px",
           }}
         >
-
           {itens.map((item) => (
             <button
               key={item.tela}
@@ -153,10 +153,8 @@ function MenuLateral({ aberto, setTela }) {
               {item.nome}
             </button>
           ))}
-
         </div>
       )}
-
     </aside>
   );
 }

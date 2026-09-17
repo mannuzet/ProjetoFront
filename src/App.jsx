@@ -11,6 +11,7 @@ import UnidadeMedida from "./components/cadastros/UnidadeMedida";
 import TipoInformacao from "./components/cadastros/TipoInformacao";
 import Indicadores from "./components/cadastros/Indicadores";
 import Funcionarios from "./components/cadastros/Funcionarios";
+import Usuarios from "./components/cadastros/Usuarios";
 
 function App() {
   const [menuAberto, setMenuAberto] = useState(true);
@@ -30,9 +31,7 @@ function App() {
       }}
     >
 
-      {/* =========================
-          BARRA SUPERIOR
-      ========================== */}
+      {/* BARRA SUPERIOR */}
 
       <header
         style={{
@@ -57,10 +56,7 @@ function App() {
         </h1>
       </header>
 
-
-      {/* =========================
-          ÁREA PRINCIPAL
-      ========================== */}
+      {/* ÁREA PRINCIPAL */}
 
       <div
         style={{
@@ -75,7 +71,6 @@ function App() {
           aberto={menuAberto}
           setTela={setTela}
         />
-
 
         {/* CONTEÚDO */}
 
@@ -107,10 +102,7 @@ function App() {
             </button>
           </div>
 
-
-          {/* =========================
-              TELAS
-          ========================== */}
+          {/* TELAS */}
 
           {tela === "inicio" && <Conteudo />}
 
@@ -129,6 +121,8 @@ function App() {
           {tela === "indicadores" && <Indicadores />}
 
           {tela === "funcionarios" && <Funcionarios />}
+
+          {tela === "usuarios" && <Usuarios />}
 
         </main>
 
