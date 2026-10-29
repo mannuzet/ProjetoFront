@@ -8,8 +8,7 @@ function MenuLateral({
   selecionarIndicador,
 }) {
   const [cadastroAberto, setCadastroAberto] = useState(true)
-  const [indicadoresAbertos, setIndicadoresAbertos] =
-    useState(true)
+  const [indicadoresAbertos, setIndicadoresAbertos] = useState(true)
 
   function alterarCadastro() {
     setCadastroAberto((anterior) => !anterior)
@@ -22,12 +21,12 @@ function MenuLateral({
   const itens = [
     { nome: 'Funcionários', tela: 'funcionarios' },
     { nome: 'Usuários', tela: 'usuarios' },
-    { nome: 'Safra', tela: 'safra' },
-    { nome: 'Unidade', tela: 'unidade' },
-    { nome: 'Equipamento', tela: 'equipamento' },
-    { nome: 'Medição', tela: 'medicao' },
-    { nome: 'Unidade de Medida', tela: 'unidadeMedida' },
-    { nome: 'Tipo de Informação', tela: 'tipoInformacao' },
+    { nome: 'Safras', tela: 'safra' },
+    { nome: 'Unidades', tela: 'unidade' },
+    { nome: 'Equipamentos', tela: 'equipamento' },
+    { nome: 'Medições', tela: 'medicao' },
+    { nome: 'Unidades de medida', tela: 'unidadeMedida' },
+    { nome: 'Tipos de informação', tela: 'tipoInformacao' },
     { nome: 'Indicadores', tela: 'indicadores' },
   ]
 
@@ -75,7 +74,6 @@ function MenuLateral({
       </h2>
 
       {/* INÍCIO */}
-
       <button
         type="button"
         onClick={() => setTela('inicio')}
@@ -90,7 +88,6 @@ function MenuLateral({
       </button>
 
       {/* SUBMENU CADASTRO */}
-
       <button
         type="button"
         onClick={alterarCadastro}
@@ -128,7 +125,6 @@ function MenuLateral({
       )}
 
       {/* SUBMENU DINÂMICO DE INDICADORES */}
-
       <button
         type="button"
         onClick={alterarIndicadores}
@@ -163,15 +159,15 @@ function MenuLateral({
               Nenhum indicador disponível.
             </p>
           ) : (
-            indicadores.map((item) => (
+            indicadores.map((item, indice) => (
               <button
-                key={item.Id}
+                key={item.Id ?? indice}
                 type="button"
-                title={item.Nome}
-                onClick={() => selecionarIndicador(item)}
+                title={item.Nome ?? 'Indicador'}
+                onClick={() => selecionarIndicador?.(item)}
                 style={estiloBotao}
               >
-                {item.Nome}
+                {item.Nome ?? 'Indicador sem nome'}
               </button>
             ))
           )}

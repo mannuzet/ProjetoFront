@@ -4,12 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 import MenuLateral from './components/MenuLateral'
 import Conteudo from './components/Conteudo'
 
-import Safra from './components/cadastros/Safra'
-import Unidade from './components/cadastros/Unidade'
-import Equipamento from './components/cadastros/Equipamento'
-import Medicao from './components/cadastros/Medicao'
-import UnidadeMedida from './components/cadastros/UnidadeMedida'
-import TipoInformacao from './components/cadastros/TipoInformacao'
+import CadastroApi from './components/CadastroApi'
+
 import Indicadores from './components/cadastros/Indicadores'
 import Funcionarios from './components/cadastros/Funcionarios'
 import Usuarios from './components/cadastros/Usuarios'
@@ -46,7 +42,8 @@ function App() {
     } catch (e) {
       setIndicadores([])
       setErroMenu(
-        e.message || 'Não foi possível carregar o menu de indicadores.'
+        e.message ||
+          'Não foi possível carregar o menu de indicadores.'
       )
     }
   }, [])
@@ -70,7 +67,6 @@ function App() {
       }}
     >
       {/* BARRA SUPERIOR */}
-
       <header
         style={{
           height: '60px',
@@ -105,7 +101,6 @@ function App() {
       </header>
 
       {/* ÁREA PRINCIPAL */}
-
       <div
         style={{
           display: 'flex',
@@ -113,7 +108,6 @@ function App() {
         }}
       >
         {/* MENU LATERAL */}
-
         {menuAberto && (
           <MenuLateral
             aberto={menuAberto}
@@ -124,7 +118,6 @@ function App() {
         )}
 
         {/* CONTEÚDO */}
-
         <main
           style={{
             flex: 1,
@@ -136,6 +129,7 @@ function App() {
             <div className="alert alert-warning m-3" role="alert">
               Não foi possível atualizar o submenu de indicadores:
               {' '}{erroMenu}
+
               <button
                 type="button"
                 className="btn btn-sm btn-outline-dark ms-2"
@@ -148,18 +142,32 @@ function App() {
 
           {tela === 'inicio' && <Conteudo />}
 
-          {tela === 'safra' && <Safra />}
+          {/* CADASTROS COM API NODE-RED */}
+          {tela === 'safra' && (
+            <CadastroApi recurso="safras" />
+          )}
 
-          {tela === 'unidade' && <Unidade />}
+          {tela === 'unidade' && (
+            <CadastroApi recurso="unidades" />
+          )}
 
-          {tela === 'equipamento' && <Equipamento />}
+          {tela === 'unidadeMedida' && (
+            <CadastroApi recurso="unidadesMedida" />
+          )}
 
-          {tela === 'medicao' && <Medicao />}
+          {tela === 'equipamento' && (
+            <CadastroApi recurso="equipamentos" />
+          )}
 
-          {tela === 'unidadeMedida' && <UnidadeMedida />}
+          {tela === 'tipoInformacao' && (
+            <CadastroApi recurso="tiposInformacao" />
+          )}
 
-          {tela === 'tipoInformacao' && <TipoInformacao />}
+          {tela === 'medicao' && (
+            <CadastroApi recurso="medicoes" />
+          )}
 
+          {/* INDICADORES */}
           {tela === 'indicadores' && (
             <Indicadores atualizarMenu={atualizarMenu} />
           )}
@@ -170,6 +178,7 @@ function App() {
             />
           )}
 
+          {/* OUTROS CADASTROS EXISTENTES */}
           {tela === 'funcionarios' && <Funcionarios />}
 
           {tela === 'usuarios' && <Usuarios />}
